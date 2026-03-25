@@ -1,0 +1,3 @@
+-- Optional setup area.
+-- Put instructor-provided schema setup scripts here if needed.
+-- Do not modify original scripts unless your instructor allows it.
