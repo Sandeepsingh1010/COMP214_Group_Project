@@ -1,0 +1,167 @@
+----TASK 1----
+
+
+PL/SQL procedure successfully completed.
+
+
+Procedure PR_FACTORIAL compiled
+
+
+  >Test with Positive integer: 5
+5! = 120
+
+  >Test with integer 0:
+0! = 1
+
+  >Test with Negative integer : -3
+Error calculating factorial. ORA-20000: Input Must be a positive number
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 2----
+
+
+PL/SQL procedure successfully completed.
+
+
+Function FN_FACTORIAL compiled
+
+
+  >Test with Positive integer:
+5! = 120
+
+  >Test with integer: 0
+Error calculating factorial; returning NULL. ORA-20000: Input can not be 0
+0! = 
+
+  >Test with Negative integer: -2
+Error calculating factorial; returning NULL. ORA-20000: Input Must be a positive number
+-2! = 
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 3----
+
+
+PL/SQL procedure successfully completed.
+
+
+Procedure PR_CALC_SALARY compiled
+
+
+  >Test with Employee ID: 104
+First Name: Bruce
+Last Name: Ernst
+Salary after working 34 years: $52533.5
+
+  >Test with Employee ID: 300
+Employee does not exist. ORA-01403: no data found
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 4----
+
+
+PL/SQL procedure successfully completed.
+
+Neena Kochhar Joined on 89-09-21 and has salary $17000
+Lex De Haan Joined on 93-01-13 and has salary $17000
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 5----
+
+
+PL/SQL procedure successfully completed.
+
+Last name: King Department ID: 90
+Last name: Kochhar Department ID: 90
+Last name: De Haan Department ID: 90
+Last name: Hunold Department ID: 60
+Last name: Ernst Department ID: 60
+Last name: Lorentz Department ID: 60
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 6----
+
+
+PL/SQL procedure successfully completed.
+
+List of Employees Hired after 01-FEB-1988:
+Hire Date of Employee ID: 101 , Neena Kochhar : 21-SEP-1989
+Hire Date of Employee ID: 102 , Lex De Haan : 13-JAN-1993
+Hire Date of Employee ID: 103 , Alexander Hunold : 03-JAN-1990
+Hire Date of Employee ID: 104 , Bruce Ernst : 21-MAY-1991
+Hire Date of Employee ID: 107 , Diana Lorentz : 07-FEB-1999
+Hire Date of Employee ID: 124 , Kevin Mourgos : 16-NOV-1999
+Hire Date of Employee ID: 141 , Trenna Rajs : 17-OCT-1995
+Hire Date of Employee ID: 142 , Curtis Davies : 29-JAN-1997
+Hire Date of Employee ID: 143 , Randall Matos : 15-MAR-1998
+Hire Date of Employee ID: 144 , Peter Vargas : 09-JUL-1998
+Hire Date of Employee ID: 149 , Eleni Zlotkey : 29-JAN-2000
+Hire Date of Employee ID: 174 , Ellen Abel : 11-MAY-1996
+Hire Date of Employee ID: 176 , Jonathon Taylor : 24-MAR-1998
+Hire Date of Employee ID: 201 , Michael Hartstein : 17-FEB-1996
+Hire Date of Employee ID: 202 , Pat Fay : 17-AUG-1997
+Hire Date of Employee ID: 205 , Shelley Higgins : 07-JUN-1994
+Hire Date of Employee ID: 206 , William Gietz : 07-JUN-1994
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 7----
+
+
+PL/SQL procedure successfully completed.
+
+
+Function GET_JOB compiled
+
+
+  >Test with Job Id 100
+The job title with employee ID 100 is AD_PRES.
+
+  >Test with Job Id 500
+An error occurred: ORA-20000: Employee ID not found: 500
+
+
+PL/SQL procedure successfully completed.
+
+----TASK 8----
+
+
+PL/SQL procedure successfully completed.
+
+
+Function GET_ANNUAL_COMP compiled
+
+
+    SALARY COMMISSION_PCT DEPARTMENT_ID ANNUAL_SALARY
+---------- -------------- ------------- -------------
+      5800                           50         69600
+      3500                           50         42000
+      3100                           50         37200
+      2600                           50         31200
+      2500                           50         30000
+
+----TASK 9----
+
+
+PL/SQL procedure successfully completed.
+
+
+Trigger REMOVE_EMPLOYEE_TRIGGER compiled
+
+no rows selected
+
+0 rows deleted.
+
+
+Rollback complete.
+
