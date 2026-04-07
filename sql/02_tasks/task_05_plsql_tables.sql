@@ -25,16 +25,22 @@ DECLARE
     lt_last_name t_last_name;
     lt_dep_id t_dep_id;
 BEGIN
-    lt_last_name(100) := 5000;
-    lt_last_name(101) := 6200;
-    
     SELECT last_name, department_id
     BULK COLLECT INTO lt_last_name, lt_dep_id
     FROM employees_a
-    WHERE employee_id < 114;
+    WHERE employee_id < 114
+    ORDER BY employee_id
+    FETCH FIRST 15 ROWS ONLY;
+
+    IF lt_last_name.COUNT = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found.');
+    END IF;
     
-    FOR i IN 1..LEAST(lt_last_name.COUNT, 15) LOOP
+    FOR i IN 1..lt_last_name.COUNT LOOP
         DBMS_OUTPUT.PUT_LINE('Last name: ' || lt_last_name(i) || ' Department ID: ' || lt_dep_id(i));
     END LOOP;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /

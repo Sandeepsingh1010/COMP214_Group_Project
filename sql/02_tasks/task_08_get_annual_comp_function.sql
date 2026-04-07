@@ -19,28 +19,14 @@ CREATE OR REPLACE FUNCTION GET_ANNUAL_COMP (
 ) RETURN employees_a.salary%TYPE
 AS
     lv_salary_annual employees_a.salary%TYPE;
-    lv_commission_pct employees_a.commission_pct%TYPE;
 BEGIN
-    DBMS_OUTPUT.PUT_LINE(fv_salary_monthly);
-    IF fv_salary_monthly IS NULL THEN
-        DBMS_OUTPUT.PUT_LINE('Invalid Salary input ! Returning 0');
-        RETURN 0;
-    ELSIF fv_salary_monthly < 0 THEN
-        DBMS_OUTPUT.PUT_LINE('Salary cant be negative ! Returning 0');
-        RETURN 0;
-    END IF;
-    
-    IF fv_commission_pct IS NULL THEN
-        DBMS_OUTPUT.PUT_LINE('Invalid commission ! considering 0');
-        lv_commission_pct := 0;
-    ELSIF fv_commission_pct < 0 THEN
-        DBMS_OUTPUT.PUT_LINE('Commission cant be negative ! considering 0');
-        lv_commission_pct := 0;
-    ELSE lv_commission_pct := fv_commission_pct;
-    END IF;
-    
-    lv_salary_annual := (fv_salary_monthly*12) + (lv_commission_pct * fv_salary_monthly * 12);
+    lv_salary_annual :=
+        (NVL(fv_salary_monthly, 0) * 12) +
+        (NVL(fv_commission_pct, 0) * NVL(fv_salary_monthly, 0) * 12);
     RETURN lv_salary_annual;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
 

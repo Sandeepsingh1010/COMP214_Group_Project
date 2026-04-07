@@ -19,14 +19,23 @@ BEGIN
     FROM employees_a
     WHERE employee_id = fv_emp_id;
     RETURN lv_job_id;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20000, 'Employee ID not found: ' || fv_emp_id);
 END;
 /
 
 -- Task 7 Tests--
-DECLARE
-    b_title VARCHAR2(35);
+VARIABLE b_title VARCHAR2(35);
 BEGIN
-    b_title := GET_JOB(101);
-    DBMS_OUTPUT.PUT_LINE('Job Title For employee with id 100 is ' || b_title);
+    DBMS_OUTPUT.PUT_LINE(CHR(10) ||'  >Test with Job Id 100');
+    :b_title := GET_JOB(100);
+    DBMS_OUTPUT.PUT_LINE('The job title with employee ID 100 is ' || :b_title || '.');
+    DBMS_OUTPUT.PUT_LINE(CHR(10) ||'  >Test with Job Id 500');
+    :b_title := GET_JOB(500);
+    DBMS_OUTPUT.PUT_LINE('The job title with employee ID 500 is ' || :b_title || '.');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 /
