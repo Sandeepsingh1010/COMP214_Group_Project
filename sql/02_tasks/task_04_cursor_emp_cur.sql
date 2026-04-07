@@ -1,6 +1,37 @@
 /* Task 4
-Declare cursor EMP_CUR to select employee name, salary, hire date.
-Display rows where salary > 15000 and hire date > 01-FEB-1988.
+Create a PL/SQL block to declare a cursor EMP_CUR to select the employee’s name,
+salary, and hire date from the employee’s table.
+Process each row from the cursor, and
+if the salary is greater than 15,000 and the hire date is greater than 01-FEB-1988, display
+the employee’s name, salary, and hire date.
 */
 
 -- TODO: implement anonymous PL/SQL block
+SET SERVEROUTPUT ON;
+
+-- Task 4 Code--
+DECLARE
+    CURSOR EMP_CUR IS
+        SELECT first_name || ' ' || last_name AS name, salary, hire_date
+        FROM employees_a;
+    lv_salary_bound employees_a.salary%TYPE := 15000;
+    lv_hire_date employees_a.hire_date%TYPE := TO_DATE('1988-02-01', 'YYYY-MM-DD');
+    lv_match_count PLS_INTEGER := 0;
+BEGIN
+    FOR row_emp IN EMP_CUR LOOP
+        IF row_emp.salary > lv_salary_bound AND
+        row_emp.hire_date > lv_hire_date THEN
+            lv_match_count := lv_match_count + 1;
+            DBMS_OUTPUT.PUT_LINE(row_emp.name || ' Joined on ' ||
+            row_emp.hire_date || ' and has salary $' || row_emp.salary);
+        END IF;
+    END LOOP;
+    IF lv_match_count = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('No employees found.');
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+END;
+/
+
